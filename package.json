@@ -18,10 +18,12 @@
     "lint": "eslint --ext .brs src/",
     "test": "node node_modules/@dazn/kopytko-unit-testing-framework/scripts/test.js"
   },
+  "dependencies": {
+    "@dazn/kopytko-utils": "^2.6.0"
+  },
   "devDependencies": {
     "@dazn/eslint-plugin-kopytko": "^2.1.0",
     "@dazn/kopytko-unit-testing-framework": "^2.4.1",
-    "@dazn/kopytko-utils": "^2.6.0",
     "eslint": "8.57.0"
   },
   "license": "MIT",
@@ -32,9 +34,6 @@
   },
   "bugs": {
     "url": "https://github.com/bchelkowski/murmurhash-roku/issues"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "release": {
     "branches": [
