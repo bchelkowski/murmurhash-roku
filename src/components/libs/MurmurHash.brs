@@ -16,36 +16,36 @@ function MurmurHash() as Object
       keyArray = CreateObject("roByteArray")
       keyArray.fromAsciiString(key)
     end if
-  
+
     C1& = &hCC9E2D51&
     C2& = &h1B873593&
     MAX& = &hFFFFFFFF&
     ROTATION1 = 15
     ROTATION2 = 13
-  
+
     hash& = seed& AND MAX&
     keyLength = keyArray.count()
-    remainder = keyLength mod 4
+    remainder = keyLength MOD 4
     arraySizeDivisibleByFour = keyLength - remainder
-  
+
     i = 0
     while i < arraySizeDivisibleByFour
       k& = keyArray[i] AND &hFF
       k& = (k& OR ((keyArray[i + 1] AND &hFF) << 8)) AND &hFFFF&
       k& = (k& OR ((keyArray[i + 2] AND &hFF) << 16)) AND &hFFFFFF&
       k& = (k& OR ((keyArray[i + 3] AND &hFF) << 24)) AND MAX&
-  
+
       k& = (k& * C1&) AND MAX&
       k& = m._rotateLeft(k&, ROTATION1) AND MAX&
       k& = (k& * C2&) AND MAX&
-  
+
       hash& = m._xor(hash&, k&) AND MAX&
       hash& = m._rotateLeft(hash&, ROTATION2) AND MAX&
       hash& = ((hash& * 5) + &hE6546B64&) AND MAX&
-  
+
       i += 4
     end while
-  
+
     remainingBytesInKey& = 0
     if (remainder = 3) then remainingBytesInKey& = (remainingBytesInKey& OR ((keyArray[keyLength - remainder + 2] AND &hFF) << 16)) AND MAX&
     if (remainder >= 2) then remainingBytesInKey& = (remainingBytesInKey& OR ((keyArray[keyLength - remainder + 1] AND &hFF) << 8)) AND MAX&
@@ -53,7 +53,7 @@ function MurmurHash() as Object
     remainingBytesInKey& = (remainingBytesInKey& * C1&) AND MAX&
     remainingBytesInKey& = m._rotateLeft(remainingBytesInKey&, ROTATION1) AND MAX&
     remainingBytesInKey& = (remainingBytesInKey& * C2&) AND MAX&
-  
+
     hash& = m._xor(hash&, remainingBytesInKey&) AND MAX&
     hash& = m._xor(hash&, keyLength) AND MAX&
     hash& = m._xor(hash&, hash& >> 16) AND MAX&
@@ -61,7 +61,7 @@ function MurmurHash() as Object
     hash& = m._xor(hash&, hash& >> 13) AND MAX&
     hash& = (hash& * &hC2B2AE35&) AND MAX&
     hash& = m._xor(hash&, hash& >> 16) AND MAX&
-  
+
     return hash&
   end function
 

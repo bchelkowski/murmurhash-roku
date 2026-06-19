@@ -35,7 +35,7 @@ function TestSuite__MurmurHash() as Object
     stringHash = MurmurHash().v3(stringValue, 1)
     byteArrayHash = MurmurHash().v3(byteArrayValue, 1)
 
-    'Then
+    ' Then
     return expect(byteArrayHash).toBe(stringHash)
   end function)
 

@@ -15,16 +15,19 @@
     "!**/_tests"
   ],
   "scripts": {
-    "lint": "eslint --ext .brs src/",
+    "format": "kopytko-format --write \"src/**/*.brs\"",
+    "format:check": "kopytko-format --check \"src/**/*.brs\"",
+    "lint": "kopytko-lint --check --source-dir src",
+    "lint:fix": "kopytko-lint --fix --source-dir src",
     "test": "node node_modules/@dazn/kopytko-unit-testing-framework/scripts/test.js"
   },
   "dependencies": {
-    "@dazn/kopytko-utils": "^2.6.0"
+    "@dazn/kopytko-utils": "^2.8.1"
   },
   "devDependencies": {
-    "@dazn/eslint-plugin-kopytko": "^2.1.0",
-    "@dazn/kopytko-unit-testing-framework": "^2.4.1",
-    "eslint": "8.57.0"
+    "@dazn/kopytko-unit-testing-framework": "^2.6.5",
+    "kopytko-formatter": "^1.1.3",
+    "kopytko-linter": "^1.3.2"
   },
   "license": "MIT",
   "kopytkoModuleDir": "src/",
